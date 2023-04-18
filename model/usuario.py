@@ -6,6 +6,7 @@ from model.enderecoUsuario import endereco_fields
 
 usuario_fields = {
     'id': fields.Integer(attribute='id'),
+    'nome': fields.String(attribute='nome'),
     'email': fields.String(attribute='email'),
     'senha': fields.String(attribute='senha'),
     'endereco': fields.Nested(endereco_fields),
