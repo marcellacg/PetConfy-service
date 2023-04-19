@@ -10,6 +10,7 @@ login_fields = {
     'key': fields.String(attribute='key')
 }
 
+#com alteração
 
 class Login(db.Model):
 
