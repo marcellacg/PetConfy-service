@@ -14,7 +14,7 @@ login_fields = {
 
 class Login(db.Model):
 
-    _tablename_ = 'tb_login'
+    __tablename__ = 'tb_login'
 
     id = db.Column(db.Integer, primary_key=True)
     usuario_id = db.Column(db.Integer, db.ForeignKey("tb_usuario.id"))
@@ -24,10 +24,10 @@ class Login(db.Model):
     # Relacionamento com Usuario
     usuario = db.relationship("Usuario", uselist=False)
 
-    def _init_(self, usuario: Usuario, datahora, key):
+    def __init__(self, usuario: Usuario, datahora, key):
         self.datahora = datahora
         self.usuario = usuario
         self.key = key
 
-    def _repr_(self):
+    def __repr__(self):
         return '<Login data: {}>'.format(self.datahora)

@@ -1,4 +1,5 @@
-from model.endereco import Endereco
+from model.EnderecoUsuario import EnderecoUsuario
+from model.error import Error, error_campos
 from model.usuario import usuario_fields
 from helpers.database import db
 from sqlalchemy import exc
@@ -10,7 +11,7 @@ parser.add_argument('nome', required=True, help="Nome é campo obrigatório.")
 parser.add_argument('email', required=True, help="Email é campo obrigatório.")
 parser.add_argument('senha', required=True, help="Senha é campo obrigatório.")
 parser.add_argument('endereco', type=dict, required=True)
-parser.add_argument('telefone', required=True)
+parser.add_argument('telefone', required=True, help="Telefone é campo obrigatório.")
 
 
 
@@ -35,8 +36,15 @@ class Usuario(Resource):
             endereco = args['endereco']
             telefone = args['telefone']
 
+            logradouro = endereco['logradouro']
+            numero = endereco['numero']
+            cidade = endereco['cidade']
+            estado = endereco['estado']
+
+            endereco_usr = EnderecoUsuario(logradouro, numero, cidade, estado)
+
             # Usuario
-            usuario = Usuario(nome, email, senha, endereco, telefone)
+            usuario = Usuario(nome, email, senha, endereco_usr, telefone)
             # Criação do Usuario.
             db.session.add(usuario)
             db.session.commit()
@@ -74,7 +82,7 @@ class Usuario(Resource):
         return 200
     
     def delete(self, usuario_id):
-        current_app.logger.info("Delete - Pessoas: %s:" % usuario_id)
+        current_app.logger.info("Delete - Usuarios: %s:" % usuario_id)
         try:
             Usuario.query.filter_by(id=usuario_id).delete()
             db.session.commit()

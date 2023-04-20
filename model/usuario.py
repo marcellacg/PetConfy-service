@@ -2,7 +2,7 @@ from sqlalchemy import ForeignKey
 from helpers.database import db
 from sqlalchemy.types import String
 from flask_restful import fields
-from model.enderecoUsuario import endereco_fields
+from model.EnderecoUsuario import endereco_fields
 
 usuario_fields = {
     'id': fields.Integer(attribute='id'),
@@ -16,7 +16,7 @@ usuario_fields = {
 
 class Usuario(db.Model):
 
-    _tablename_ = "tb_usuario"
+    __tablename__ = "tb_usuario"
 
     id = db.Column('id', db.Integer, primary_key=True)
     nome = db.Column(db.String, unique=True, nullable=False)
@@ -31,7 +31,7 @@ class Usuario(db.Model):
     tipo_usuario = db.Column('tipo_usuario', String(50))
     _mapper_args_ = {'polymorphic_on': tipo_usuario}
 
-    def _init_(self, nome, email, senha, telefone, endereco: EnderecoUsuario, observacoes):
+    def __init__(self, nome, email, senha, telefone, endereco: EnderecoUsuario, observacoes):
         self.nome = nome
         self.email = email
         self.senha = senha
@@ -39,5 +39,5 @@ class Usuario(db.Model):
         self.endereco = endereco
         self.observacoes = observacoes
 
-    def _repr_(self):
+    def __repr__(self):
         return '<Nome: {}\n Email: {}\n Telefone: {}\n Observacoes: {}>'.format(self.nome, self.email, self.telefone, self.observacoes)

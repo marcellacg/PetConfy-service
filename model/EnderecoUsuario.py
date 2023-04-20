@@ -13,7 +13,7 @@ endereco_fields = {
 
 class EnderecoUsuario(db.Model):
 
-    _tablename_ = "tb_enderecoUsuario"
+    __tablename__ = "tb_enderecoUsuario"
 
     id = db.Column(db.Integer, primary_key=True)
     logradouro = db.Column(db.String, nullable=False)
@@ -23,11 +23,11 @@ class EnderecoUsuario(db.Model):
 
     usuario_id = db.Column(db.Integer, db.ForeignKey("tb_usuario.id"))
 
-    def _init_(self, logradouro, numero, cidade, estado):
+    def __init__(self, logradouro, numero, cidade, estado):
         self.logradouro = logradouro
         self.numero = numero
         self.cidade = cidade
         self.estado = estado
 
-    def _repr_(self):
+    def __repr__(self):
         return '<Logradouro: {}\n Numero: {}\n Cidade: {}\n Estado: {}>'.format(self.logradouro, self.numero, self.cidade, self.estado)
