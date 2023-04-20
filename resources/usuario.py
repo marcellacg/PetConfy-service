@@ -1,4 +1,4 @@
-from model.EnderecoUsuario import EnderecoUsuario
+from model.EnderecoUsuario import EnderecoUsuario, endereco_fields
 from model.error import Error, error_campos
 from model.usuario import usuario_fields
 from helpers.database import db

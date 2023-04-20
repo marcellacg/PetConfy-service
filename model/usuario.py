@@ -32,13 +32,13 @@ class Usuario(db.Model):
     tipo_usuario = db.Column('tipo_usuario', String(50))
     _mapper_args_ = {'polymorphic_on': tipo_usuario}
 
-    def __init__(self, nome, email, senha, telefone, endereco: EnderecoUsuario, observacoes):
+    def __init__(self, nome, email, senha, endereco: EnderecoUsuario, telefone,  observacoes):
         self.nome = nome
         self.email = email
         self.senha = senha
-        self.telefone = telefone
         self.endereco = endereco
+        self.telefone = telefone
         self.observacoes = observacoes
 
     def __repr__(self):
-        return '<Nome: {}\n Email: {}\n Telefone: {}\n Observacoes: {}>'.format(self.nome, self.email, self.telefone, self.observacoes)
+        return '<Nome: {}\n Email: {}\n Endereço: {}\n Telefone: {}\n Observacoes: {}>'.format(self.nome, self.email, self.endereco, self.telefone, self.observacoes)

@@ -19,7 +19,7 @@ class EnderecoUsuario(db.Model):
     logradouro = db.Column(db.String, nullable=False)
     numero = db.Column(db.String(9), nullable=False)
     cidade = db.Column(db.String(50), nullable=False)
-    estado = db.Column(db.String(3), nullable=False)
+    estado = db.Column(db.String(2), nullable=False)
 
     #usuario_id = db.Column(db.Integer, db.ForeignKey("tb_usuario.id"))
 
