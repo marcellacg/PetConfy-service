@@ -21,5 +21,5 @@ api = Api(app)
 api.add_resource(Usuario, '/usuarios')
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)
 

@@ -10,8 +10,9 @@ parser = reqparse.RequestParser()
 parser.add_argument('nome', required=True, help="Nome é campo obrigatório.")
 parser.add_argument('email', required=True, help="Email é campo obrigatório.")
 parser.add_argument('senha', required=True, help="Senha é campo obrigatório.")
-parser.add_argument('endereco', type=dict, required=True)
+parser.add_argument('endereco', type=dict, required=True, help="Endereço é campo obrigatório.")
 parser.add_argument('telefone', required=True, help="Telefone é campo obrigatório.")
+parser.add_argument('observacoes', required=True, help="Observações é campo obrigatório.")
 
 
 
@@ -35,6 +36,7 @@ class Usuario(Resource):
             senha = args['senha']
             endereco = args['endereco']
             telefone = args['telefone']
+            observacoes = args['observacoes']
 
             logradouro = endereco['logradouro']
             numero = endereco['numero']
@@ -44,7 +46,7 @@ class Usuario(Resource):
             endereco_usr = EnderecoUsuario(logradouro, numero, cidade, estado)
 
             # Usuario
-            usuario = Usuario(nome, email, senha, endereco_usr, telefone)
+            usuario = Usuario(nome, email, senha, endereco_usr, telefone, observacoes)
             # Criação do Usuario.
             db.session.add(usuario)
             db.session.commit()
@@ -69,10 +71,11 @@ class Usuario(Resource):
             senha = args['senha']
             endereco = args['endereco']
             telefone = args['telefone']
+            observacoes = args['observacoes']
 
             Usuario.query \
                 .filter_by(id=usuario_id) \
-                .update(dict(nome=nome, email=email, senha=senha, endereco=endereco, telefone=telefone))
+                .update(dict(nome=nome, email=email, senha=senha, endereco=endereco, telefone=telefone, observacoes=observacoes))
             db.session.commit()
 
         except exc.SQLAlchemyError:

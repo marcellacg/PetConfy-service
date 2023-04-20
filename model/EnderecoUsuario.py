@@ -18,10 +18,10 @@ class EnderecoUsuario(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     logradouro = db.Column(db.String, nullable=False)
     numero = db.Column(db.String(9), nullable=False)
-    cidade = db.Column(db.String(), nullable=False)
-    estado = db.Column(db.String(), nullable=False)
+    cidade = db.Column(db.String(50), nullable=False)
+    estado = db.Column(db.String(3), nullable=False)
 
-    usuario_id = db.Column(db.Integer, db.ForeignKey("tb_usuario.id"))
+    #usuario_id = db.Column(db.Integer, db.ForeignKey("tb_usuario.id"))
 
     def __init__(self, logradouro, numero, cidade, estado):
         self.logradouro = logradouro

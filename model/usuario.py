@@ -22,10 +22,11 @@ class Usuario(db.Model):
     nome = db.Column(db.String, unique=True, nullable=False)
     email = db.Column(db.String(200), unique=True)
     senha = db.Column(db.String(30), unique=True, nullable=False)
-    telefone = db.Column(db.String(11))
+    telefone = db.Column(db.String(11), nullable=False)
     observacoes = db.Column(db.String(700))
 
-    EnderecoUsuario = db.relationship("EnderecoUsuario", uselist=False)
+    EnderecoUsuario_id = db.Column(db.Integer, ForeignKey('tb_enderecoUsuario.id'))
+    EnderecoUsuario = db.relationship("EnderecoUsuario", uselist=False, back_populates='tb_usuario')
 
     # Herança: Superclasse
     tipo_usuario = db.Column('tipo_usuario', String(50))
