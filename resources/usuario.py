@@ -1,6 +1,6 @@
-from model.EnderecoUsuario import EnderecoUsuario, endereco_fields
+from model.EnderecoUsuario import EnderecoUsuario
 from model.error import Error, error_campos
-from model.usuario import usuario_fields
+from model.usuario import Usuario, usuario_fields
 from helpers.database import db
 from sqlalchemy import exc
 from flask_restful import Resource, marshal_with, reqparse, current_app, marshal
@@ -12,7 +12,7 @@ parser.add_argument('email', required=True, help="Email é campo obrigatório.")
 parser.add_argument('senha', required=True, help="Senha é campo obrigatório.")
 parser.add_argument('endereco', type=dict, required=True, help="Endereço é campo obrigatório.")
 parser.add_argument('telefone', required=True, help="Telefone é campo obrigatório.")
-parser.add_argument('observacoes', required=True, help="Observações é campo obrigatório.")
+parser.add_argument('observacoes', required=True)
 
 
 

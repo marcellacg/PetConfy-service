@@ -10,13 +10,12 @@ login_fields = {
     'key': fields.String(attribute='key')
 }
 
-#com alteração
 
 class Login(db.Model):
 
     __tablename__ = 'tb_login'
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column('id', db.Integer, primary_key=True)
     usuario_id = db.Column(db.Integer, db.ForeignKey("tb_usuario.id"))
     datahora = db.Column(db.DateTime, default=datetime.now)
     key = db.Column(db.String(40))
